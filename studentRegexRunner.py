@@ -2,6 +2,7 @@
 __author__ = "Arana Fireheart"
 
 from os import walk
+from os import stat
 from os.path import exists, join
 import re
 from datetime import datetime
@@ -44,6 +45,10 @@ def checkAssignment(testStrings):
     resultsExpectedForGrades = []
     resultsGeneratedForGrades = []
     try:
+        if stat(assignmentFileFull).st_size == 0:
+            print(f"File: {assignmentFileFull} is empty!")
+            numbers = [number for number in range(0, 32)]
+            return (numbers, ([0, ] * 32), (["", ] * 32), (["", ] * 32))
         with open(assignmentFileFull, 'r') as assignment:
             for lineNumber, regexPattern in enumerate(assignment.readlines()):
                 regexPattern = regexPattern.strip()
@@ -153,7 +158,9 @@ def checkAssignment(testStrings):
 
         return patternNumbers, studentGrades, resultsExpectedForGrades, resultsGeneratedForGrades
     except FileNotFoundError:
-        return ([0,] * 32), (["",] * 32), (["",] * 32)
+        print(f"File: {assignmentFileFull} not found!")
+        numbers = [number for number in range(0, 32)]
+        return (numbers, ([0, ] * 32), (["", ] * 32), (["", ] * 32))
 
 
 
