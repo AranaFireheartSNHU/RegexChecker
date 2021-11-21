@@ -1,20 +1,13 @@
 #!/usr/bin/env python
 __author__ = "Arana Fireheart"
 
-from os import walk
 from os import stat
-from os.path import exists, join
+from os.path import join
 import re
-from datetime import datetime
-from time import strftime
 
-completedKey = "61239064"
-attemptedKey = "71230875"
-keyFilename = ".keyfile"
 startingFolder = "./"
 testStringsFilename = "testStrings.txt"
 assignmentFilename = "regexpatterns.txt"
-resultsFilename = "results.txt"
 totalNumberOfPatterns = 32
 
 
@@ -125,7 +118,6 @@ def checkAssignment(testStrings):
                                             studentGrades.append(0)
                                     else:
                                         studentGrades.append(0)
-
                                 elif mode == "CaptureSp":
                                     matchObj = re.findall(regexPattern, testString)
                                     if matchObj is not None and len(matchObj) > 0:
@@ -140,7 +132,6 @@ def checkAssignment(testStrings):
                                             studentGrades.append(0)
                                     else:
                                         studentGrades.append(0)
-
                                 elif mode == "Skip":
                                     matchObj = re.match(regexPattern, testString)
                                     if matchObj is None:
@@ -149,7 +140,6 @@ def checkAssignment(testStrings):
                                     else:
                                         resultsGeneratedForGrades.append(matchObj.string)
                                         studentGrades.append(0)
-
                                 else:
                                     print(f"Error unknown mode: {mode}")
                             except re.error:
