@@ -92,6 +92,12 @@ def checkAssignment(testStrings):
                                                     resultsGeneratedForGrades.append(combinedString.strip())
                                                 else:
                                                     resultsGeneratedForGrades.append("splat")
+                                            elif len(matchObj) > 1:
+                                                if isinstance(matchObj, list):
+                                                    combinedString = ""
+                                                    for entry in matchObj:
+                                                        combinedString += entry + ' '
+                                                    resultsGeneratedForGrades.append(combinedString.strip())
                                     else:
                                         resultsGeneratedForGrades.append("None")
                                     if matchObj:
